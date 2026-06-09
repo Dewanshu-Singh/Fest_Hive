@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ShieldCheck, Lock, ArrowRight, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function AdminLoginPage() {
   const [formData, setFormData] = useState({ passcode: '' });
