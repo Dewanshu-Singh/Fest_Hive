@@ -7,15 +7,38 @@ import { Mail, Lock, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Login logic here
-    console.log('Logging in:', formData);
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch('https://fest-hive.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // In a real app, save token to localStorage or cookies
+        alert('Login Successful!');
+        router.push('/');
+      } else {
+        alert(data.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      alert('Network error. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

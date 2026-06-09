@@ -7,15 +7,37 @@ import { ShieldCheck, Lock, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const [formData, setFormData] = useState({ passcode: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Admin Login logic here
-    console.log('Admin login attempt:', formData);
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch('https://fest-hive.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok && data.user?.role === 'admin') {
+        alert('Admin Login Successful!');
+        router.push('/'); // Replace with /admin/dashboard when built
+      } else {
+        alert(data.message || 'Invalid Admin Credentials.');
+      }
+    } catch (error) {
+      alert('Network error. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

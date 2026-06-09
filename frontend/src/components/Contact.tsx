@@ -9,20 +9,29 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Mocking API call for now
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
+    try {
+      const response = await fetch('https://fest-hive.onrender.com/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
       
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
-    }, 1500);
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      alert('Network error. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
