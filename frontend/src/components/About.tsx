@@ -52,7 +52,7 @@ export default function About() {
         >
           <h2 className="text-4xl md:text-6xl font-bold text-white"><span className="text-accent-gold">/</span> The Story of Fest_Hive</h2>
           <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
-            We don't just organize events; we engineer unforgettable moments. For over a decade, Fest_Hive has been the silent architect behind the world's most spectacular gatherings.
+            We don&apos;t just organize events; we engineer unforgettable moments. For over a decade, Fest_Hive has been the silent architect behind the world&apos;s most spectacular gatherings.
           </p>
         </motion.div>
 

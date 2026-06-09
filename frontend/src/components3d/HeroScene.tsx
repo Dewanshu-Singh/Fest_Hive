@@ -6,6 +6,7 @@ import * as random from 'maath/random/dist/maath-random.esm';
 import { useState, useRef } from 'react';
 import * as THREE from 'three';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ParticleSwarm(props: any) {
   const ref = useRef<THREE.Points>(null);
   const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 10 }) as Float32Array);

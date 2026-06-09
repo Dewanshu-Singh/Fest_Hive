@@ -42,9 +42,9 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Let's <span className="text-accent-gold">Connect</span></h2>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Let&apos;s <span className="text-accent-gold">Connect</span></h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Ready to craft your next unforgettable experience? Reach out to us and let's start planning.
+            Ready to craft your next unforgettable experience? Reach out to us and let&apos;s start planning.
           </p>
         </motion.div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Monitor, Info, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';

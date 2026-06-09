@@ -8,7 +8,6 @@ import { Menu, X } from 'lucide-react';
 const navItems = ['Home', 'About', 'Events', 'Services', 'Contact'];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
@@ -24,11 +23,7 @@ export default function Navbar() {
     ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.1)']
   );
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
